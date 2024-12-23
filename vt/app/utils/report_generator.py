@@ -1,6 +1,6 @@
 # utils/report_generator.py
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from reportlab.pdfgen import canvas 
 
 def generate_pdf(report_name, articles):
     file_path = f'reports/{report_name}.pdf'
