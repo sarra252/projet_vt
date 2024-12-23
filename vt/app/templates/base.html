@@ -16,6 +16,14 @@
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'search' %}">Search</a></li>
           <li><a href="{% url 'report' %}">Report</a></li>
+          {% if user.is_authenticated %}
+          <li>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+            </form>
+          </li>
+          {% endif %}
         </ul>
       </nav>
     </header>

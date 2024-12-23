@@ -31,8 +31,7 @@ ALLOWED_HOSTS = []
 # settings.py
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'  # Assurez-vous que 'home' est le nom d'une URL configurée dans votre urls.py
-#LOGOUT_REDIRECT_URL = '/' # Redirige vers la page d'accueil après une déconnexion
-
+LOGOUT_REDIRECT_URL = '/login/'
 
 # Application definition
 

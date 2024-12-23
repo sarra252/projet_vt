@@ -7,6 +7,22 @@ class RegulationSpider(scrapy.Spider):
     # Définissez ici les URLs de départ
     start_urls = [
         'https://dataprotection.ie',  # Remplacez par une URL valide où vous avez le droit de scraper
+        'https://eur-lex.europa.eu/',  
+        'https://www.legislation.gov.uk/',
+        'https://www.privacyshield.gov/',
+        'https://www.priv.gc.ca/en/',
+        'https://www.privacy.gov.ph/',
+        'https://www.cnil.fr/fr',
+        'https://www.datatilsynet.no/',
+        'https://www.jdsupra.com',
+        'https://www.lexology.com',
+        'https://techcrunch.com',
+        'https://www.wired.com',
+        'https://privacyinternational.org',
+        'https://iapp.org'
+
+
+
     ]
     
     def parse(self, response):

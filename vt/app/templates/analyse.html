@@ -1,0 +1,12 @@
+<!-- templates/articles/analyze.html -->
+{% extends 'base.html' %} {% block content %}
+<h1>Article Analysis</h1>
+<div>
+  {% for article in articles %}
+  <div>
+    <h2>{{ article.title }}</h2>
+    <p>Keywords: {{ article.keywords }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

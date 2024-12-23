@@ -1,4 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h2>Generated Report</h2>
+<!-- Ajouter un lien pour analyser les articles -->
+<a href="{% url 'analyze_articles' %}">Analyze Articles</a>
+
+<!-- Ajouter un bouton pour télécharger le rapport -->
+<a href="{% url 'generate_report' %}" class="btn btn-primary">Download Report</a>
+
 <p>{{ report }}</p>
 {% endblock %}

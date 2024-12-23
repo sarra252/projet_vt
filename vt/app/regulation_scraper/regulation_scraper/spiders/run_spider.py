@@ -1,3 +1,4 @@
+
 from scrapy.crawler import CrawlerProcess
 from app import RegulationSpider
 

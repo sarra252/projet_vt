@@ -28,13 +28,34 @@ def home(request):
 
 # Vue de recherche nécessitant une authentification
 
-def search(request):
-    search_terms = request.GET.get('search_terms')
-    if search_terms:
-        articles = Article.objects.filter(title__icontains=search_terms)
-    else:
-        articles = Article.objects.none()
-    return render(request, 'search.html', {'articles': articles})
+# views.py
+from django.shortcuts import render
+from .models import Article
+
+def search_articles(request):
+    query = request.GET.get('query', '')  # Récupère la requête de recherche de l'utilisateur
+    articles = Article.objects.all()
+    
+    if query:
+        articles = articles.filter(
+            title__icontains=query  # Filtre les titres contenant le mot-clé
+        )
+
+    return render(request, 'search.html', {'articles': articles, 'query': query})
+
+# views.py
+from .utils.nlp_analysis import extract_keywords
+from .models import Article
+
+def analyze_articles(request):
+    articles = Article.objects.all()
+
+    for article in articles:
+        if not article.keywords:
+            article.keywords = ', '.join(extract_keywords(article.summary))
+            article.save()
+
+    return render(request, 'analyze.html', {'articles': articles})
 
 # Vue pour générer des rapports, nécessite une authentification
 
@@ -62,3 +83,16 @@ def display_results(request):
 def display_articles(request):
     articles = Article.objects.all()
     return render(request, 'articles/display_articles.html', {'articles': articles})
+
+
+
+
+# views.py
+from django.http import FileResponse
+from .utils.report_generator import generate_pdf
+from .models import Article
+
+def generate_report(request):
+    articles = Article.objects.all()
+    report_path = generate_pdf("techno_vigilance_report", articles)
+    return FileResponse(open(report_path, 'rb'), as_attachment=True, filename="report.pdf")
