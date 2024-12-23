@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<form method="get" action="{% url 'search' %}">
+  <input type="text" name="search_terms" placeholder="Enter search terms" />
+  <button type="submit">Search</button>
+</form>
+<ul>
+  {% for article in articles %}
+  <li>{{ article.title }} - {{ article.summary }}</li>
+  {% empty %}
+  <li>No articles found.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
